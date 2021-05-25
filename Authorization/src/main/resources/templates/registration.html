@@ -30,6 +30,17 @@
             <span class="has-error" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"></span>
         </div>
 
+        <div class="form-group">
+
+            <select th:field="*{roles}" class="form-control" >
+                <option value="">Select Role</option>
+                <option th:value="'1'" th:text="Restaurant"></option>
+                <option th:value="'2'" th:text="Customer"></option>
+                <option th:value="'3'" th:text="Driver"></option>
+            </select>
+
+        </div>
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form>
 
