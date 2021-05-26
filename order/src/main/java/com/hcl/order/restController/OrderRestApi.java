@@ -3,16 +3,15 @@ package com.hcl.order.restController;
 import com.hcl.order.model.Order;
 import com.hcl.order.service.OrderService;
 import com.hcl.order.util.GeneratePdfOrderInvoice;
+import com.itextpdf.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -25,28 +24,35 @@ public class OrderRestApi {
         this.orderService = orderService;
     }
 
-    /*@RequestMapping(value = "/restaurants/{rid}/orders", method = RequestMethod.POST)
-    @ResponseStatus(value = HttpStatus.CREATED)*/
     @PostMapping("/restaurants/{rid}/orders")
     public Order createOder(@RequestBody Order order) {
         return orderService.createOrder(order);
     }
 
-    @RequestMapping(value = "/orderInvoicePdf", method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<InputStreamResource> orderInvoicePdf() {
+    @GetMapping(("/restaurants/orders"))
+    public List<Order> getOrderDetails(){
+        System.out.println("Inside the get method of getOrderDetails");
+        return orderService.getOrderDetails();
 
-        List<Order> Orders = orderService.getOrderDetails();
+    }
 
-        ByteArrayInputStream bis = GeneratePdfOrderInvoice.OrderReport(Orders);
+    @GetMapping(("/restaurants/orders/{id}"))
+    public Order getOrderDetailsById(@PathVariable(value="id") Long id){
+        System.out.println("Inside the get method of getOrderDetailsById");
+        String orderId=id.toString();
+        Optional<Order> order=orderService.getOrderById(orderId);
+        return order.get();
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "inline; filename=OrderInvoice.pdf");
-
-        return ResponseEntity
-                .ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(new InputStreamResource(bis));
+    }
+    @RequestMapping(value = "/restaurants/orders/{id}/orderInvoicePdf", method = RequestMethod.GET)
+    public ResponseEntity<String> orderInvoicePdf(@PathVariable(value="id") Long id) {
+        try {
+            String orderId=id.toString();
+            Optional<Order> order = orderService.getOrderById(orderId);
+            GeneratePdfOrderInvoice.OrderReport(order.get());
+        }catch (DocumentException | IOException e){
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>("Report has been generated ", HttpStatus.OK);
     }
 }

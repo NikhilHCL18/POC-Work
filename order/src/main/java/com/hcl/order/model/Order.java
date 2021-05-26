@@ -5,10 +5,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@Document
+@Document(collection="Order")
 public class Order {
     @Id
-    Long id;
+    String id;
 
     private String restaurantId;
     private List<ItemQuantity> items;
@@ -23,11 +23,11 @@ public class Order {
         return userInfo;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
