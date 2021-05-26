@@ -5,7 +5,6 @@ import com.hcl.restaurant.repository.RestaurantRepository;
 import com.hcl.restaurant.service.SequenceGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,13 +25,12 @@ public class RestaurantController {
 
     @GetMapping("/restaurant")
     public List<Restaurant> getAllRestaurant(){
+        System.out.println("Inside get all Restaurant");
         return restaurantRepository.findAll();
 
     }
 
-    /*@PostMapping("/restaurants")*/
-    @RequestMapping(value = "/restaurants", method = RequestMethod.POST)
-    @ResponseStatus(value = HttpStatus.CREATED)
+    @PostMapping(value = "/restaurants")
     public Restaurant createRestaurant(@RequestBody Restaurant restaurant){
         System.out.println("Inside the post method of Controller");
         restaurant.setId(sequenceGeneratorService.generateSequence(Restaurant.SEQUENCE_NAME));
@@ -41,6 +39,7 @@ public class RestaurantController {
 
     @GetMapping("/restaurant/{id}")
     public ResponseEntity<Restaurant> getRestaurantById(@PathVariable(value="id") Long restaurantId) throws ResourceNotFoundException{
+        System.out.println("Inside the get method of getRestaurantById");
         Restaurant restaurant= restaurantRepository.findById(restaurantId).
                 orElseThrow(()-> new ResourceNotFoundException("Restaurant Not found for this id::"+restaurantId));
         return ResponseEntity.ok().body(restaurant);
