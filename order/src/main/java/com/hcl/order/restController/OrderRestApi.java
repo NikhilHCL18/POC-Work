@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("order/api")
 public class OrderRestApi {
     @Autowired
     OrderService orderService;
@@ -24,19 +24,19 @@ public class OrderRestApi {
         this.orderService = orderService;
     }
 
-    @PostMapping("/restaurants/{rid}/orders")
+    @PostMapping("/createOrder")
     public Order createOder(@RequestBody Order order) {
         return orderService.createOrder(order);
     }
 
-    @GetMapping(("/restaurants/orders"))
+    @GetMapping(("/getAllOrders"))
     public List<Order> getOrderDetails(){
         System.out.println("Inside the get method of getOrderDetails");
         return orderService.getOrderDetails();
 
     }
 
-    @GetMapping(("/restaurants/orders/{id}"))
+    @GetMapping(("/getOrderById/{id}"))
     public Order getOrderDetailsById(@PathVariable(value="id") Long id){
         System.out.println("Inside the get method of getOrderDetailsById");
         String orderId=id.toString();
@@ -44,7 +44,7 @@ public class OrderRestApi {
         return order.get();
 
     }
-    @RequestMapping(value = "/restaurants/orders/{id}/orderInvoicePdf", method = RequestMethod.GET)
+    @RequestMapping(value = "/getOrderById/{id}/orderInvoicePdf", method = RequestMethod.GET)
     public ResponseEntity<String> orderInvoicePdf(@PathVariable(value="id") Long id) {
         try {
             String orderId=id.toString();

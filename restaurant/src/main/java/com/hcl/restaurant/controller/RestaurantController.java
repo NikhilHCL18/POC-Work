@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("restaurant/api")
 public class RestaurantController {
 
     @Autowired
@@ -23,21 +23,20 @@ public class RestaurantController {
     private SequenceGeneratorService sequenceGeneratorService;
 
 
-    @GetMapping("/restaurant")
+    @GetMapping("/getAllRestaurant")
     public List<Restaurant> getAllRestaurant(){
         System.out.println("Inside get all Restaurant");
         return restaurantRepository.findAll();
-
     }
 
-    @PostMapping(value = "/restaurants")
+    @PostMapping(value = "/createRestaurant")
     public Restaurant createRestaurant(@RequestBody Restaurant restaurant){
         System.out.println("Inside the post method of Controller");
         restaurant.setId(sequenceGeneratorService.generateSequence(Restaurant.SEQUENCE_NAME));
         return restaurantRepository.save(restaurant);
     }
 
-    @GetMapping("/restaurant/{id}")
+    @GetMapping("/getRestaurantById/{id}")
     public ResponseEntity<Restaurant> getRestaurantById(@PathVariable(value="id") Long restaurantId) throws ResourceNotFoundException{
         System.out.println("Inside the get method of getRestaurantById");
         Restaurant restaurant= restaurantRepository.findById(restaurantId).
@@ -45,9 +44,9 @@ public class RestaurantController {
         return ResponseEntity.ok().body(restaurant);
     }
 
-    @PutMapping("/restaurant/{id}")
+    @PutMapping("/updateRestaurant/{id}")
     public ResponseEntity<Restaurant> updateRestaurant(@PathVariable(value="id") Long restaurantId , @RequestBody Restaurant restaurantDetails) throws ResourceNotFoundException{
-        System.out.println("Inside the uodate method of updateRestaurant");
+        System.out.println("Inside the update method of updateRestaurant");
         Restaurant restaurant= restaurantRepository.findById(restaurantId).
                 orElseThrow(()-> new ResourceNotFoundException("Restaurant Not found for this id::"+restaurantId));
 
@@ -56,7 +55,7 @@ public class RestaurantController {
         return ResponseEntity.ok().body(updatedRestaurant);
     }
 
-    @DeleteMapping("/restaurant/{id}")
+    @DeleteMapping("/removeRestaurant/{id}")
     public Map<String,Boolean> deleteRestaurant(@PathVariable(value="id") Long restaurantId) throws ResourceNotFoundException{
         System.out.println("Inside the delete method of deleteRestaurant");
         Restaurant restaurant= restaurantRepository.findById(restaurantId).
