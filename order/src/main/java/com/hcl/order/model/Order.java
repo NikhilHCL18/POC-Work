@@ -16,12 +16,12 @@ public class Order {
     private long orderTime;
     private String specialNote;
     private long deliveryTime;
+    private String customerId;
+    private long unitPreparationTime;
 
     private UserInfo userInfo;
+    private AddressInfo addressInfo;
 
-    public UserInfo getUserInfo() {
-        return userInfo;
-    }
 
     public String getId() {
         return id;
@@ -79,8 +79,36 @@ public class Order {
         this.deliveryTime = deliveryTime;
     }
 
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
     public void setUserInfo(UserInfo userInfo) {
         this.userInfo = userInfo;
+    }
+
+    public AddressInfo getAddressInfo() {
+        return addressInfo;
+    }
+
+    public void setAddressInfo(AddressInfo addressInfo) {
+        this.addressInfo = addressInfo;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public long getUnitPreparationTime() {
+        return unitPreparationTime;
+    }
+
+    public void setUnitPreparationTime(long unitPreparationTime) {
+        this.unitPreparationTime = unitPreparationTime;
     }
 
     @Override
@@ -93,7 +121,10 @@ public class Order {
                 ", orderTime=" + orderTime +
                 ", specialNote='" + specialNote + '\'' +
                 ", deliveryTime=" + deliveryTime +
+                ", customerId='" + customerId + '\'' +
+                ", unitPreparationTime='" + unitPreparationTime + '\'' +
                 ", userInfo=" + userInfo +
+                ", addressInfo=" + addressInfo +
                 '}';
     }
 }

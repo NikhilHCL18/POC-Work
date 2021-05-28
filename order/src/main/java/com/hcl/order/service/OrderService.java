@@ -9,5 +9,6 @@ public interface OrderService {
 
     Order createOrder(Order order);
     List<Order> getOrderDetails();
-    Optional<Order> getOrderById(String id);
+    Order getOrderById(String id);
+    void removeOrderDetails(String id);
 }

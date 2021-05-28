@@ -4,6 +4,7 @@ import com.hcl.order.model.Order;
 import com.hcl.order.repository.OrderRepository;
 import com.hcl.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,9 +31,15 @@ public class OrderServiceImpl implements OrderService {
         return (List<Order>) orderRepository.findAll();
     }
 
-    public Optional<Order> getOrderById(String id) {
+    public Order getOrderById(String id) {
         System.out.println("ID:::"+id);
-        return orderRepository.findById(id);
+        return orderRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException
+                ("Order is not found for this orderId::"+id));
+    }
+
+    @Override
+    public void removeOrderDetails(String id) {
+        orderRepository.deleteById(id);
     }
 
 

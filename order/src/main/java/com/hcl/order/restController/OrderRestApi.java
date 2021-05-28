@@ -40,19 +40,26 @@ public class OrderRestApi {
     public Order getOrderDetailsById(@PathVariable(value="id") Long id){
         System.out.println("Inside the get method of getOrderDetailsById");
         String orderId=id.toString();
-        Optional<Order> order=orderService.getOrderById(orderId);
-        return order.get();
+        Order order=orderService.getOrderById(orderId);
+        return order;
 
     }
     @RequestMapping(value = "/getOrderById/{id}/orderInvoicePdf", method = RequestMethod.GET)
     public ResponseEntity<String> orderInvoicePdf(@PathVariable(value="id") Long id) {
         try {
             String orderId=id.toString();
-            Optional<Order> order = orderService.getOrderById(orderId);
-            GeneratePdfOrderInvoice.OrderReport(order.get());
+            Order order = orderService.getOrderById(orderId);
+            GeneratePdfOrderInvoice.OrderReport(order);
         }catch (DocumentException | IOException e){
             e.printStackTrace();
         }
         return new ResponseEntity<>("Report has been generated ", HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/removeOrderById")
+    public ResponseEntity<String> removeOrderDetails(@PathVariable(value = "id")  Long id){
+        String orderId=id.toString();
+        orderService.removeOrderDetails(orderId);
+        return new ResponseEntity<>("Order is removed from the database ", HttpStatus.OK);
     }
 }

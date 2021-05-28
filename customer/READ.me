@@ -1,0 +1,36 @@
+# TEST API DETAILS:-
+
+## Test Order Creation By Customer
+POST http://localhost:8086/customer/api/createOrder
+
+{
+   "addressInfo": {
+      "address1": "220, Dwarkapuri",
+      "address2": "Indore",
+      "city": "Indore",
+      "state": "MP",
+      "zip": "452009"
+   },
+   "customerId": "1",
+   "deliveryTime": 40,
+   "id": "12",
+   "items": [
+      {
+         "name": "Biryani",
+         "price": 350,
+         "quantity": 2
+      }
+   ],
+   "orderTime": 4,
+   "restaurantId": "5",
+   "specialNote": "Make it Spicy",
+   "totalPrice": 700,
+   "unitPreparationTime": "30 min",
+   "userInfo": {
+      "firstName": "Nikhil",
+      "lastName": "Bhansali",
+      "phone": "Phone"
+   }
+}
+
+GET
