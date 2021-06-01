@@ -122,7 +122,7 @@ Delivery Time::20
 ## Request
 http://localhost:8086/customer/api/cancelOrder
 
-##Response--Updated the order status to "CANCELLED"
+## Response--Updated the order status to "CANCELLED"
 {
 "id": "187",
 "restaurantId": "8",
