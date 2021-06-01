@@ -1,5 +1,21 @@
 # Food-Order
 
+# Create an account for authorization based on the role
+## Request
+http://localhost:8081/authenticate/registration
+
+## Response
+
+![img_1.png](img_1.png)
+
+# Login for authorization 
+## Request
+http://localhost:8084/authenticate/login
+
+## Response
+
+![img_2.png](img_2.png)
+
 # Create Restaurant
 http://localhost:8082/restaurant/api/createRestaurant
 
