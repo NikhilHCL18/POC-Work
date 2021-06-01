@@ -17,9 +17,12 @@ public class Restaurant {
     @Indexed(unique = true)
     private String restaurantName;
 
-    public Restaurant(long id , String restaurantName) {
+    private String address;
+
+    public Restaurant(long id, String restaurantName, String address) {
         this.id = id;
-        this.restaurantName=restaurantName;
+        this.restaurantName = restaurantName;
+        this.address = address;
     }
 
     public long getId() {
@@ -38,11 +41,21 @@ public class Restaurant {
         this.restaurantName = restaurantName;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "Restaurant{" +
                 "id=" + id +
                 ", restaurantName='" + restaurantName + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
 }
+
