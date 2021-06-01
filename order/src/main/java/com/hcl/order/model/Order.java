@@ -18,6 +18,8 @@ public class Order {
     private long deliveryTime;
     private String customerId;
     private long unitPreparationTime;
+    private String orderStatus;
+    private long driverId;
 
     private UserInfo userInfo;
     private AddressInfo addressInfo;
@@ -111,6 +113,22 @@ public class Order {
         this.unitPreparationTime = unitPreparationTime;
     }
 
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public long getDriverId() {
+        return driverId;
+    }
+
+    public void setDriverId(long driverId) {
+        this.driverId = driverId;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -122,7 +140,9 @@ public class Order {
                 ", specialNote='" + specialNote + '\'' +
                 ", deliveryTime=" + deliveryTime +
                 ", customerId='" + customerId + '\'' +
-                ", unitPreparationTime='" + unitPreparationTime + '\'' +
+                ", unitPreparationTime=" + unitPreparationTime +
+                ", orderStatus='" + orderStatus + '\'' +
+                ", driverId=" + driverId +
                 ", userInfo=" + userInfo +
                 ", addressInfo=" + addressInfo +
                 '}';

@@ -1,8 +1,9 @@
 package com.java.Authorization.repository;
 
 import com.java.Authorization.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+public interface UserRepository extends MongoRepository<User, String> {
     User findByUsername(String username);
 }

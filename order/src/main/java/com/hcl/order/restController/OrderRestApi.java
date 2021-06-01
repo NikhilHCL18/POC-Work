@@ -56,6 +56,11 @@ public class OrderRestApi {
         return new ResponseEntity<>("Report has been generated ", HttpStatus.OK);
     }
 
+    @PutMapping(value = "/updateOrderStatus")
+    public Order updateOrderStatus(@RequestBody Order order){
+        return orderService.updateOrderStatus(order);
+    }
+
     @DeleteMapping(value = "/removeOrderById")
     public ResponseEntity<String> removeOrderDetails(@PathVariable(value = "id")  Long id){
         String orderId=id.toString();

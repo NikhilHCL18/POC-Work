@@ -1,4 +1,4 @@
-package com.hcl.customer.model.config;
+package com.java.Authorization.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.OAS_30)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.hcl.customer.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.java.Authorization.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
@@ -50,9 +50,9 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         ApiInfo apiInfo =new ApiInfo(
 
-                "Customer Api Documentation",
-                "Customer Api is intended to perform Ordering the food operations like order creation, fetching order details " +
-                          "against the restaurant & also able to get total fare and estimated time to deliver the food.",
+                "Authorization Api Documentation",
+                "Authorization Api will register the user according to their role & " +
+                          "it will able to login/authenticate successfully only with correct username and password.",
                 "1.0",
                 "urn:tos",
 

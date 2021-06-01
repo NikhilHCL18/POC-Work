@@ -1,36 +1,46 @@
 # Test Order APIs
 
 ## Test Order creation
-POST localhost:8081/api/restaurants/989/orders
+POST localhost:8083/api/restaurants/989/orders
 
 {
-  "id": "243",
-  "restaurantId": 989,
+  "addressInfo": {
+    "address1": "301",
+    "address2": "Fortune Square",
+    "city": "Indore",
+    "state": "MP",
+    "zip": "452009"
+  },
+  "customerId": "4",
+  "deliveryTime": 20,
+  "driverId": 1,
+  "id": "1234",
   "items": [
     {
-      "name": "Pizza",
+      "name": "Chilli Paneer",
       "price": 340,
       "quantity": 2
     },
     {
-      "name": "White Sause Pasta",
-      "price": 243,
-      "quantity": 3
+      "name": "Noodles",
+      "price": 120,
+      "quantity": 2
     }
   ],
-  "totalPrice": 245,
+  "orderStatus": "CREATED",
   "orderTime": 123,
-  "specialNote": "Nice",
-  "deliveryTime": 40,
+  "restaurantId": "5",
+  "specialNote": "Make it Spicy",
+  "totalPrice": 920,
+  "unitPreparationTime": 10,
   "userInfo": {
-    "firstName": "Surendra",
-    "lastName": "Verma",
-    "phone": 14081234567,
-    "address": "Indore"
+    "firstName": "Neha",
+    "lastName": "Maheshwari",
+    "phone": "9926738051"
   }
 }
 
-GET http://localhost:8081/api/restaurants/orders/243
-GET http://localhost:8081/api/restaurants/orders/243/orderInvoicePdf
+GET http://localhost:8083/api/restaurants/orders/243
+GET http://localhost:8083/api/restaurants/orders/243/orderInvoicePdf
 
 

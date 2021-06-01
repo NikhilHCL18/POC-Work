@@ -69,4 +69,19 @@ public class CustomerRestApi {
                 " Food Preparation Time::" + foodPreparationTime + " Delivery Time::" + deliveryTime;
         return result;
     }
+
+    @PutMapping(value = "/cancelOrder")
+    public String cancelOrder(@RequestBody Order order){
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<Order> entity = new HttpEntity<Order>(order, headers);
+
+         order = restTemplate.exchange(
+                "http://localhost:8083/order/api/updateOrderStatus", HttpMethod.PUT, entity, Order.class).getBody();
+
+         String result= "The Order Status is updated to CANCELLED for the orderId::"+order.getId();
+         return result;
+    }
+
 }

@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/restaurant/pom.xml" />
         <option value="$PROJECT_DIR$/Authorization/pom.xml" />
         <option value="$PROJECT_DIR$/gateway-service/pom.xml" />
+        <option value="$PROJECT_DIR$/driver/pom.xml" />
       </list>
     </option>
   </component>

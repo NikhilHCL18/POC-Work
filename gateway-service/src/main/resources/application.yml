@@ -6,6 +6,10 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: Authorization
+          uri: http://localhost:8084/
+          predicates:
+            - Path=/authenticate/**
         - id: order
           uri: http://localhost:8083/
           predicates:
@@ -14,3 +18,11 @@ spring:
           uri: http://localhost:8082/
           predicates:
             - Path=/restaurant/api/**
+        - id: customer
+          uri: http://localhost:8086/
+          predicates:
+              - Path=/customer/api/**
+        - id: driver
+          uri: http://localhost:8085/
+          predicates:
+              - Path=/driver/api/**

@@ -11,7 +11,7 @@
 
 <div class="container">
 
-    <form method="POST" class="form-signin" th:object="${userForm}" th:action="@{/registration}">
+    <form method="POST" class="form-signin" th:object="${userForm}" th:action="@{/authenticate/registration}">
         <h2 class="form-signin-heading">Create your account</h2>
         <div class="form-group">
             <input type="text" th:field="*{username}" class="form-control" placeholder="Username"
@@ -34,9 +34,10 @@
 
             <select th:field="*{roles}" class="form-control" >
                 <option value="">Select Role</option>
-                <option th:value="'1'" th:text="Restaurant"></option>
-                <option th:value="'2'" th:text="Customer"></option>
-                <option th:value="'3'" th:text="Driver"></option>
+                <option th:each="role : ${T(com.java.Authorization.model.UserRole).values()}"
+                        th:value="${role}"
+                        th:text="${role}">role
+                </option>
             </select>
 
         </div>

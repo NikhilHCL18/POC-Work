@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/authenticate")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -24,7 +25,7 @@ public class UserController {
     @GetMapping("/registration")
     public String registration(Model model) {
         if (securityService.isAuthenticated()) {
-            return "redirect:/";
+            return "redirect:/authenticate/welcome";
         }
 
         model.addAttribute("userForm", new User());
@@ -41,16 +42,16 @@ public class UserController {
         }
 
         userService.save(userForm);
-
         securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-        return "redirect:/welcome";
+        return "redirect:/authenticate/welcome";
     }
 
     @GetMapping("/login")
     public String login(Model model, String error, String logout) {
+
         if (securityService.isAuthenticated()) {
-            return "redirect:/";
+            return "redirect:/authenticate/welcome";
         }
 
         if (error != null)

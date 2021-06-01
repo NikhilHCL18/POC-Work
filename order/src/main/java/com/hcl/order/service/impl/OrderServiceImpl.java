@@ -4,6 +4,10 @@ import com.hcl.order.model.Order;
 import com.hcl.order.repository.OrderRepository;
 import com.hcl.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +17,9 @@ import java.util.Optional;
 @Service
 public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
+
+    @Autowired
+    public MongoTemplate mongoTemplate;
 
     @Autowired
     public OrderServiceImpl(OrderRepository orderRepository) {
@@ -35,6 +42,15 @@ public class OrderServiceImpl implements OrderService {
         System.out.println("ID:::"+id);
         return orderRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException
                 ("Order is not found for this orderId::"+id));
+    }
+
+    @Override
+    public Order updateOrderStatus(Order order) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("id").is(order.getId()));
+        Update update = new Update();
+        update.set("orderStatus",order.getOrderStatus());
+        return mongoTemplate.findAndModify(query,update,Order.class);
     }
 
     @Override

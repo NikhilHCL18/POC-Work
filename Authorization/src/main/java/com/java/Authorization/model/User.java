@@ -1,30 +1,26 @@
 package com.java.Authorization.model;
-import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "user")
+@Document(collection = "user")
 public class User {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     private String username;
 
     private String password;
 
-    @Transient
     private String passwordConfirm;
 
-    @ManyToMany
-    private List<Role> roles;
+    private String roles;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -52,11 +48,11 @@ public class User {
         this.passwordConfirm = passwordConfirm;
     }
 
-    public List<Role> getRoles() {
+    public String getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(String roles) {
         this.roles = roles;
     }
 }
