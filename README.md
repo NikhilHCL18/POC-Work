@@ -225,7 +225,7 @@ http://localhost:8085/driver/api/orderDetailAndAddressDetailById/{id}
 
 ## Update the Order status to Picked-up
 ## RequestUrl
-http://localhost:8085/driver/api/orderDelivered
+http://localhost:8085/driver/api/orderPickedUp
 
 {
 "id": "187",
