@@ -3,7 +3,7 @@
 # Create Restaurant
 http://localhost:8082/restaurant/api/createRestaurant
 
-##Request:
+## Request:
 {
 "id": 8,
 "restaurantName": "Maa Ki Rasai",
@@ -14,7 +14,7 @@ http://localhost:8082/restaurant/api/createRestaurant
 # Get the Restaurant details
 http://localhost:8082/restaurant/api/getRestaurantById/8
 
-##Response
+## Response
 {
 "id": 8,
 "restaurantName": "Maa Ki Rasai",
@@ -24,10 +24,10 @@ http://localhost:8082/restaurant/api/getRestaurantById/8
 # Create Menu for Restaurant
 http://localhost:8082/restaurant/api/create/{restaurantId}/menu
 
-##Request Url
+## Request Url
 http://localhost:8082/restaurant/api/create/8/menu
 
-##Response
+## Response
 [
     {
     "id": 1,
@@ -43,7 +43,7 @@ http://localhost:8082/restaurant/api/create/8/menu
 # Create Order
 http://localhost:8086/customer/api/createOrder
 
-##Request
+## Request
 {
 "addressInfo": {
 "address1": "220, Dwarkapuri",
@@ -76,7 +76,7 @@ http://localhost:8086/customer/api/createOrder
 }
 }
 
-#Response
+# Response
 {
 "id": "187",
 "restaurantId": "8",
@@ -109,17 +109,17 @@ http://localhost:8086/customer/api/createOrder
 }
 }
 
-##Get Total Fare and Estimated time to deliver
-##Request
+## Get Total Fare and Estimated time to deliver
+## Request
 http://localhost:8086/customer/api/getTotalFare/187
 
-##Response
+## Response
 Total fare::630 
 Food Preparation Time::15 
 Delivery Time::20
 
-##IF Customer want to cancel the order
-##Request
+## IF Customer want to cancel the order
+## Request
 http://localhost:8086/customer/api/cancelOrder
 
 ##Response--Updated the order status to "CANCELLED"
@@ -157,24 +157,24 @@ http://localhost:8086/customer/api/cancelOrder
 
 ## Invoice-Service
 
-##Generate Order Invoice Report
+## Generate Order Invoice Report
 http://localhost:8083/order/api/getOrderById/{id}/orderInvoicePdf
 
-#Request Url 
+# Request Url 
 http://localhost:8086/order/api/getOrderById/187/orderInvoicePdf
 
-#Response
+# Response
 ![img.png](img.png)
 Report has been generated 
 
 
 # Driver Service
 
-##Get the detail details and address details on the basis of ID
-##RequestUrl
+## Get the detail details and address details on the basis of ID
+## RequestUrl
 http://localhost:8085/driver/api/orderDetailAndAddressDetailById/{id}
 
-##Response
+## Response
 {
 "id": "187",
 "restaurantId": "8",
@@ -207,8 +207,8 @@ http://localhost:8085/driver/api/orderDetailAndAddressDetailById/{id}
 }
 }
 
-##Update the Order status to Picked-up
-##RequestUrl
+## Update the Order status to Picked-up
+## RequestUrl
 http://localhost:8085/driver/api/orderDelivered
 
 {
@@ -243,7 +243,7 @@ http://localhost:8085/driver/api/orderDelivered
 }
 }
 
-##Response
+## Response
 {
 "id": "187",
 "restaurantId": "8",
@@ -277,8 +277,8 @@ http://localhost:8085/driver/api/orderDelivered
 }
 
 
-##Update the Order status to Delivererd
-##RequestUrl
+## Update the Order status to Delivererd
+## RequestUrl
 http://localhost:8085/driver/api/orderDelivered
 
 {
@@ -313,7 +313,7 @@ http://localhost:8085/driver/api/orderDelivered
 }
 }
 
-##Response
+## Response
 {
 "id": "187",
 "restaurantId": "8",
